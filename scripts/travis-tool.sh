@@ -9,6 +9,7 @@ set -x
 CRAN=${CRAN:-"http://cran.rstudio.com"}
 GLEON=${GLEON:-"http://gleon.github.com"}
 BIOC=${BIOC:-"http://bioconductor.org/biocLite.R"}
+BIN=${BIN:-"win.binary"}
 OS=$(uname -s)
 
 # MacTeX installs in a new $PATH entry, and there's no way to force
@@ -165,7 +166,7 @@ RExtInstall() {
     fi
 
     echo "Installing R package(s): ${pkg}"
-    Rscript -e 'install.packages(commandArgs(TRUE), type = win.binary, repos="'"${GLEON}"'")' "$@"
+    Rscript -e 'install.packages(commandArgs(TRUE), type = "'"${BIN}"'", repos="'"${GLEON}"'")' "$@"
 }
 
 BiocInstall() {
