@@ -266,7 +266,7 @@ RunTests() {
     # Create binary package (currently Windows only)
     if [[ "${OS:0:5}" == "MINGW" ]]; then
         echo "Creating binary package"
-        R CMD INSTALL "${R_INSTALL_ARGS} ${FILE}"
+        R CMD INSTALL ${FILE} ${R_INSTALL_ARGS}
     fi
 
     if [[ -n "${WARNINGS_ARE_ERRORS}" ]]; then
