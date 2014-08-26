@@ -157,6 +157,15 @@ RInstall() {
     Rscript -e 'install.packages(commandArgs(TRUE), repos="'"${CRAN}"'")' "$@"
 }
 
+RExtInstall() {
+    if [[ "" == "$*" ]]; then
+        echo "No arguments to r_ext_install"
+        exit 1
+    fi
+
+    echo "Installing R package(s): ${pkg}"
+    Rscript -e 'install.packages(commandArgs(TRUE), type = "'""${win.binary}"'", repos="'"${http://gleon.github.com/}"'")' "$@"
+}
 
 BiocInstall() {
     if [[ "" == "$*" ]]; then
@@ -309,6 +318,11 @@ case $COMMAND in
     ## Install an R dependency from CRAN
     "install_r"|"r_install")
         RInstall "$@"
+        ;;
+    ##
+    ## Install an R dependency from external repo
+    "install_ext_r"|"r_ext_install")
+        RExtInstall "$@"
         ;;
     ##
     ## Install an R dependency from Bioconductor
