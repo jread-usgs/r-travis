@@ -20,8 +20,9 @@ OS=$(uname -s)
 # root path.
 PATH="${PATH}:/usr/texbin"
 
-R_BUILD_ARGS=${R_BUILD_ARGS-"--no-multiarch"}
-R_CHECK_ARGS=${R_CHECK_ARGS-"--no-build-vignettes --no-manual --as-cran"}
+R_BUILD_ARGS=${R_BUILD_ARGS-"--no-build-vignettes --no-manual"}
+R_CHECK_ARGS=${R_CHECK_ARGS-"--no-build-vignettes --no-manual --as-cran --no-multiarch"}
+R_INSTALL_ARGS=${R_INSTALL_ARGS-"--build --no-multiarch"}
 
 Bootstrap() {
     if [[ "Darwin" == "${OS}" ]]; then
@@ -265,7 +266,7 @@ RunTests() {
     # Create binary package (currently Windows only)
     if [[ "${OS:0:5}" == "MINGW" ]]; then
         echo "Creating binary package"
-        R CMD INSTALL --build "${FILE}"
+        R CMD INSTALL "${R_INSTALL_ARGS} ${FILE}"
     fi
 
     if [[ -n "${WARNINGS_ARE_ERRORS}" ]]; then
