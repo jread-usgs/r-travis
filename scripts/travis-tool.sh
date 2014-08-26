@@ -7,6 +7,7 @@ set -e
 set -x
 
 CRAN=${CRAN:-"http://cran.rstudio.com"}
+GLEON=${GLEON:-"http://gleon.github.com"}
 BIOC=${BIOC:-"http://bioconductor.org/biocLite.R"}
 OS=$(uname -s)
 
@@ -164,7 +165,7 @@ RExtInstall() {
     fi
 
     echo "Installing R package(s): ${pkg}"
-    Rscript -e 'install.packages(commandArgs(TRUE), type = "'"${win.binary}"'", repos="'"${http://gleon.github.com/}"'")' "$@"
+    Rscript -e 'install.packages(commandArgs(TRUE), type = win.binary, repos="'"${GLEON}"'")' "$@"
 }
 
 BiocInstall() {
