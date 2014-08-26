@@ -164,7 +164,7 @@ RExtInstall() {
     fi
 
     echo "Installing R package(s): ${pkg}"
-    Rscript -e 'install.packages(commandArgs(TRUE), type = "'""${win.binary}"'", repos="'"${http://gleon.github.com/}"'")' "$@"
+    Rscript -e 'install.packages(commandArgs(TRUE), type = "'"${win.binary}"'", repos="'"${http://gleon.github.com/}"'")' "$@"
 }
 
 BiocInstall() {
